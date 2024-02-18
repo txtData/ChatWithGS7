@@ -20,7 +20,7 @@ system_instructions_2 = "Create an informative and helpful English prompt suitab
 user_query = "In which districts in Berlin are streets named Kastanienallee?"
 
 
-# Call HERE's discover endpoint and returns the JSON result.
+# Calls HERE's discover endpoint and returns the JSON result.
 # Fixes a few common issue's with the API call created by GTP, if they are present.
 def call_here_discover_endpoint(call_string):
     if call_string.startswith("GET "):
