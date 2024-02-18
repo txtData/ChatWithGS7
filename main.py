@@ -2,14 +2,14 @@ from openai import OpenAI
 import os
 import requests
 
-# Instructions for GTP used to transform the user query to an API call.
+# Instructions for GTP to transform the user query to an API call
 system_instructions_1 = "Translate the user prompt to a full API call to HERE's discover endpoint " \
                         "(https://discover.search.hereapi.com/v1/discover). " \
                         "Make sure to include the at and q parameter, but omit the apiKey parameter. " \
                         "Remember that the at parameter should contain coordinates. " \
                         "Your response should only contain the API call, in one line and nothing else."
 
-# Instructions for GTP used to transsform the API response to an natural language response.
+# Instructions for GTP to transform the API response to a natural language response
 system_instructions_2 = "Create an informative and helpful English prompt suitable for a TTS that answers the user " \
                         "question '#1#' solemnly based on the JSON object that is provided. " \
                         "The prompt should be a direct answer to the question." \
