@@ -1,6 +1,6 @@
-from openai import OpenAI
 import os
 import requests
+from openai import OpenAI
 
 # Instructions for GTP to transform the user query to an API call
 system_instructions_1 = "Translate the user prompt to a full API call to HERE's discover endpoint " \
