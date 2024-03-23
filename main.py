@@ -16,9 +16,6 @@ system_instructions_2 = "Create an informative and helpful English prompt suitab
                         "(The JSON is a response from https://discover.search.hereapi.com/v1/discover). " \
                         "Do not mention JSON or that the information is from a JSON object."
 
-# the user query
-user_query = "In which districts in Berlin are streets named Kastanienallee?"
-
 
 # Call HERE's discover endpoint and returns the JSON result.
 # Fixes a few common issue's with the API call created by GTP, if they are present.
@@ -33,7 +30,7 @@ def call_here_discover_endpoint(call_string):
         call_string = "https://discover.search.hereapi.com" + call_string
     call_string += "&apiKey=" + os.environ.get("HERE_API_KEY")
     response = requests.get(call_string)
-    #print(json.dumps(response.json(), indent=2))
+    # print(json.dumps(response.json(), indent=2))
     return response.json()
 
 
@@ -58,6 +55,9 @@ def simplify_discover_result(response):
 
 open_AI_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
+# the user query, e.g. "In which districts in Berlin are streets named Pappelallee?"
+user_query = input("\nPlease state your question: ")
+
 # Create an API call based on the user question
 chat_completion_1 = open_AI_client.chat.completions.create(
     messages=[
@@ -73,6 +73,8 @@ chat_completion_1 = open_AI_client.chat.completions.create(
     model="gpt-3.5-turbo",
 )
 discover_query = chat_completion_1.choices[0].message.content
+print("\nThank you! I think the following GS7 query is suitable to collect the necessary information to answer your question:")
+print("\t", discover_query)
 discover_result = call_here_discover_endpoint(discover_query)
 
 # Create a natural language response based on the JSON result from the API
@@ -95,6 +97,9 @@ chat_completion_2 = open_AI_client.chat.completions.create(
 
 # Print the results
 response_2 = chat_completion_2.choices[0].message.content
-print(user_query)
-print(discover_query)
-print(response_2)
+
+print("\nBased on the GS7 response, I created the following answer for you:")
+print("\t", response_2)
+
+print("\n")
+print(discover_result)
