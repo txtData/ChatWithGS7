@@ -1,7 +1,10 @@
-**Using GTP to chat with HERE's discover endpoint**
+# Using GTP to chat with HERE's discover endpoint
 
-OPENAI_API_KEY and HERE_API_KEY need to be set in environment variables!
+## Prerequisites
 
+OPENAI_API_KEY and HERE_API_KEY need to be set in environment variables.
+
+## What does the script do?
 
 For a user question like 
 
