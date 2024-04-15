@@ -2,14 +2,14 @@ import os
 import requests
 from openai import OpenAI
 
-# Instructions for GTP to transform the user query to an API call
+# Instructions for GPT to transform the user query to an API call
 system_instructions_1 = "Translate the user prompt to a full API call to HERE's discover endpoint " \
                         "(https://discover.search.hereapi.com/v1/discover). " \
                         "Make sure to include the at and q parameter, but omit the apiKey parameter. " \
                         "Remember that the at parameter should contain coordinates. " \
                         "Your response should only contain the API call, in one line and nothing else."
 
-# Instructions for GTP to transform the API response to a natural language response
+# Instructions for GPT to transform the API response to a natural language response
 system_instructions_2 = "Create an informative and helpful English prompt suitable for a TTS that answers the user " \
                         "question '#1#' solemnly based on the JSON object that is provided. " \
                         "The prompt should be a direct answer to the question." \
@@ -18,7 +18,7 @@ system_instructions_2 = "Create an informative and helpful English prompt suitab
 
 
 # Calls HERE's discover endpoint and returns the JSON result.
-# Fixes a few common issue's with the API call created by GTP, if they are present.
+# Fixes a few common issue's with the API call created by GPT, if they are present.
 def call_here_discover_endpoint(call_string):
     if call_string.startswith("GET "):
         call_string = call_string[4:]
@@ -34,7 +34,7 @@ def call_here_discover_endpoint(call_string):
     return response.json()
 
 
-# Simplifies the HERE API response. Removes some JSON fields, so that GTP focuses on what's important.
+# Simplifies the HERE API response. Removes some JSON fields, so that GPT focuses on what's important.
 def simplify_discover_result(response):
     for item in response.get("items", []):
         item.pop("id")
