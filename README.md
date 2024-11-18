@@ -2,7 +2,7 @@
 
 ## Blog posts
 
-Please note: There are two blog posts published on HERE's developer blog that explain this project in more detail:
+There are two blog posts published on HERE's developer blog that explain this project in more detail:
 * https://www.here.com/learn/blog/chatwithgs7-powering-location-queries-with-here-gs7-and-openai
 * https://www.here.com/learn/blog/chatwithgs7-enabling-the-front-end-experience
 
